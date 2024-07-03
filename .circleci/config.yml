@@ -23,7 +23,7 @@ jobs:
           command: yarn add --dev jest-junit
       - run:
           name: Run tests with JUnit as reporter
-          command: npx jest --ci --runInBand --reporters=default --reporters=jest-junit
+          command: npm run test:ci
           environment:
             JEST_JUNIT_OUTPUT_DIR: ./reports/
             JEST_JUNIT_ADD_FILE_ATTRIBUTE: "true"
@@ -39,7 +39,7 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm run eslint
-      - run: npx prettier --check .
+      - run: npm run format:ci
 
 workflows:
   build:

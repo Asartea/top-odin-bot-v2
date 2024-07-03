@@ -7,7 +7,9 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "eslint": "eslint '**/*.js'"
+    "test:ci": "NODE_OPTIONS=--experimental-vm-modules jest --ci --runInBand --reporters=default --reporters=jest-junit",
+    "eslint": "eslint '**/*.js'",
+    "format:ci": "prettier --check ."
   },
   "author": "",
   "license": "ISC",
