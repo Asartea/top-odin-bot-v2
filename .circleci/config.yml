@@ -1,17 +1,17 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@5.0.0
+  node: circleci/node@5.2.0
 
 jobs:
-  build:
+  build-app:
     docker:
       - image: cimg/node:16.4
     steps:
       - checkout
       - run: node --version
-          
-  tests-and-linters:
+
+  tests:
     executor: node/default
     steps:
       - checkout
@@ -19,10 +19,22 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm test
+      - store_test_results:
+          path: test-results
+
+  linters:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
       - run: npm run eslint
+      - run: npx prettier --check .
 
 workflows:
   build:
     jobs:
-      - build
-      - tests-and-linters
+      - build-app
+      - tests
+      - linters
