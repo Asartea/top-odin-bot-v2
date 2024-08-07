@@ -17,8 +17,6 @@ echo "$changed_files" | while IFS=$'\t' read -r file; do
             *.js|*.json|*.yml|*.yaml)
                 npx prettier --write "$filePath"
                 ;;
-            *)
-                ;;
         esac
     fi
 done
