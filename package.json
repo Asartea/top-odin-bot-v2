@@ -9,7 +9,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "format": "prettier --cache --write",
     "eslint": "eslint '**/*.js'",
-    "ci:prettier": "sh -c 'git diff-tree --no-commit-id --name-only -r main HEAD | grep -E \"\\.(js|json|yml|yaml)$\" | tr \"\\n\" \" \" | xargs npx prettier --check'"
+    "ci:prettier": "sh -c 'git diff-tree --no-commit-id --name-only -r main HEAD | grep -E \"\\.(js|json|yml|yaml)$\" | tr \"\\n\" \" \" | xargs npx prettier --check'",
+    "format:changed": "sh -c 'git diff-tree --no-commit-id --name-only -r main HEAD | grep -E \"\\.(js|json|yml|yaml)$\" | tr \"\\n\" \" \" | xargs npx prettier --write'"
   },
   "author": "",
   "license": "ISC",
