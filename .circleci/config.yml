@@ -26,8 +26,8 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-        cache-path: ~/project/node_modules
-        override-ci-command: npm install
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
       - run: git clone git@github.com:TheOdinProject/odin-bot-v2.git --branch main --depth 1
       - run: |
           git diff-tree --no-commit-id --name-only -r main HEAD |
