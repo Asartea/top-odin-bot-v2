@@ -27,7 +27,7 @@ const ThreadCreator = () => ({
     await Promise.all(messages.map(async (m) => {
       await thread.send(m);
     }));
-
+    // this is a change; technically
     return thread;
   },
 });
