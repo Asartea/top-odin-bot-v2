@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run: node --version
 
-  tests-and-linters:
+  tests:
     executor: node/default
     steps:
       - checkout
@@ -19,20 +19,17 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run: npm test
-      - run: npm run eslint
 
-  prettier:
+  linters:
     executor: node/default
     steps:
       - checkout
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - run: |
-          git diff-tree --no-commit-id --name-only -r main HEAD |
-          grep -E '\.(js|json|yml|yaml)$' |
-          tr '\n' ' ' |
-          xargs npx prettier --check
+      - run: npm run ci:prettier
+      - run: npm run eslint
+
 
 
 
@@ -40,5 +37,5 @@ workflows:
   build:
     jobs:
       - build
-      - tests-and-linters
-      - prettier
+      - tests
+      - linters
