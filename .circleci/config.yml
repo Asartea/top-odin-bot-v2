@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout
       - run: node --version
-          
+
   tests-and-linters:
     executor: node/default
     steps:
@@ -21,8 +21,25 @@ jobs:
       - run: npm test
       - run: npm run eslint
 
+  prettier:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+        cache-path: ~/project/node_modules
+        override-ci-command: npm install
+      - run: git clone git@github.com:TheOdinProject/odin-bot-v2.git --branch main --depth 1
+      - run: |
+          git diff-tree --no-commit-id --name-only -r main HEAD |
+          grep -E '\.(js|json|yml|yaml)$' |
+          tr '\n' ' ' |
+          xargs npx prettier --check
+
+
+
 workflows:
   build:
     jobs:
       - build
       - tests-and-linters
+      - prettier
