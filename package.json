@@ -9,7 +9,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "format": "prettier --cache --write",
     "eslint": "eslint '**/*.js'",
-    "ci:prettier": "sh prettier-ci.sh"
+    "ci:prettier": "bash prettier-ci.sh"
   },
   "author": "",
   "license": "ISC",

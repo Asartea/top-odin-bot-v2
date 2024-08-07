@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This script will run prettier on all JavaScript, JSON, YAML, and YML files that have been changed when compared to main
 
