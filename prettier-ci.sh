@@ -19,7 +19,6 @@ while read -r file; do
                 ;;
         esac
     fi
-    # Check if the file extension is .js, .json, .yml, or .yaml
 done <<< "$changed_files"
 
 echo "Files to format: ${files_to_format[@]}"
